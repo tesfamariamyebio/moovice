@@ -1,26 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+}
+from 'react-router-dom';
+import PopularBattle from './components/PopularBattle';
+import Popular from './components/Popular';
+import MyList from './components/MyList';
+import Battle from './components/Battle';
+import Discover from './components/Discover';
+class App extends React.Component{
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li><Link to="/thisweek">This Week</Link></li>
+            <li><Link to="/battle/">Battle</Link></li>
+            <li><Link to="/popular/">Popular</Link></li>
+            <li><Link to="/popular-battle">Popular battle</Link></li>
+            <li><Link to="/my-list/">My list</Link></li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route path="/thisweek/">
+            <Discover />
+          </Route>
+          <Route path="/battle/">
+            <Battle />
+          </Route>
+          <Route path="/popular-battle/">
+            <PopularBattle />
+          </Route>
+          <Route path="/my-list/">
+            <MyList />
+          </Route>
+          <Router path="/popular/">
+            <Popular />
+          </Router>
+         
+
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
+}
 export default App;
